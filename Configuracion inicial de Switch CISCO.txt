@@ -1,0 +1,31 @@
+enable
+configure terminal
+
+# Configuración del nombre del dispositivo
+hostname S1
+
+# Configuración de las interfaces
+ interface GigabitEthernet0/1
+ description Conexión al servidor
+ switchport mode access
+ switchport access vlan 10
+ no shutdown
+
+interface GigabitEthernet0/2
+ description Conexión al otro switch
+ switchport mode trunk
+ switchport trunk allowed vlan 10,20
+ no shutdown
+
+# Configuración de VLANs
+vlan 10
+ name VLAN-10
+vlan 20
+ name VLAN-20
+
+# Configuración de la contraseña de acceso
+enable secret mi_clave_secreta
+
+# Guardar la configuración
+end
+write memory
